@@ -10,5 +10,6 @@ extern "C" {
 #[repr(C)]
 pub struct Options {
     pub outputFilePath: RocStr,
+    pub subtitle: RocStr,
     pub title: RocStr,
 }

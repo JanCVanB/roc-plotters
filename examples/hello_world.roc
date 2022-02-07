@@ -4,6 +4,7 @@ app "hello_world"
     provides [ options ] to pf
 
 options = {
-    title: "Hello, World!",
     outputFilePath: "./examples/hello_world.png",
+    subtitle: "These strings are coming from Roc :)",
+    title: "Hello, World!",
     }

@@ -9,6 +9,7 @@ pub fn plot(options: Options) -> Result<(), Box<dyn std::error::Error>> {
     let mut cc = ChartBuilder::on(&area)
         .margin(5)
         .set_all_label_area_size(50)
+        .caption(options.subtitle.as_str(), ("sans-serif", 40))
         .build_cartesian_2d(-3.4f32..3.4, -1.2f32..1.2f32)?;
     cc.configure_mesh()
         .x_labels(20)

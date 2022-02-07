@@ -2,6 +2,7 @@ platform "roc-plotters"
     requires {} {
         options : {
             outputFilePath : Str,
+            subtitle : Str,
             title : Str,
         }
     }
@@ -12,6 +13,7 @@ platform "roc-plotters"
 
 optionsForHost : {
     outputFilePath : Str,
+    subtitle : Str,
     title : Str,
     }
 optionsForHost = options
