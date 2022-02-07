@@ -5,6 +5,8 @@ app "hello_world"
 
 options = {
     outputFilePath: "./examples/hello_world.png",
-    subtitle: "These strings are coming from Roc :)",
     title: "Hello, World!",
+    subtitle: "These strings are coming from Roc :)",
+    width: 1024,
+    height: 768,
     }

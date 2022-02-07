@@ -2,8 +2,10 @@ platform "roc-plotters"
     requires {} {
         options : {
             outputFilePath : Str,
-            subtitle : Str,
             title : Str,
+            subtitle : Str,
+            width : U32,
+            height : U32,
         }
     }
     exposes []
@@ -13,7 +15,9 @@ platform "roc-plotters"
 
 optionsForHost : {
     outputFilePath : Str,
-    subtitle : Str,
     title : Str,
+    subtitle : Str,
+    width : U32,
+    height : U32,
     }
 optionsForHost = options

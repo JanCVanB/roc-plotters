@@ -2,7 +2,10 @@ use crate::options::Options;
 use plotters::prelude::*;
 
 pub fn plot(options: Options) -> Result<(), Box<dyn std::error::Error>> {
-    let area = BitMapBackend::new(options.outputFilePath.as_str(), (1024, 768)).into_drawing_area();
+    let area = BitMapBackend::new(
+        options.outputFilePath.as_str(),
+        (options.width, options.height)
+    ).into_drawing_area();
     area.fill(&WHITE)?;
     let area = area.titled(options.title.as_str(), ("sans-serif", 60))?;
     let x_axis = (-3.4f32..3.4).step(0.1);
