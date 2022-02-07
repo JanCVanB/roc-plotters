@@ -4,3 +4,5 @@
 +
 [Roc](https://roc-lang.org/)
 = <3
+
+![hello world example image](./examples/hello_world.png)
