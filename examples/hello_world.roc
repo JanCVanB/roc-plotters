@@ -5,4 +5,5 @@ app "hello_world"
 
 options = {
     title: "Hello, World!",
-    outputFilePath: "./examples/hello_world.png" }
+    outputFilePath: "./examples/hello_world.png",
+    }
