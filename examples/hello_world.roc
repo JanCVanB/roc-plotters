@@ -1,6 +1,8 @@
 app "hello_world"
     packages { pf: "../platform" }
     imports []
-    provides [ title ] to pf
+    provides [ options ] to pf
 
-title = "Hello, World!"
+options = {
+    title: "Hello, World!",
+    outputFilePath: "./examples/hello_world.png" }

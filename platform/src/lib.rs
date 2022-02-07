@@ -7,8 +7,14 @@ use std::ffi::CStr;
 use std::os::raw::c_char;
 
 extern "C" {
-    #[link_name = "roc__titleForHost_1_exposed"]
-    fn roc_title() -> RocStr;
+    #[link_name = "roc__optionsForHost_1_exposed"]
+    fn roc_options() -> Options;
+}
+
+#[repr(C)]
+struct Options {
+    outputFilePath: RocStr,
+    title: RocStr,
 }
 
 #[no_mangle]
@@ -67,20 +73,22 @@ fn plot() {
 
 const OUT_FILE_PATH: &'static str = "./plot.png";
 fn plot_() -> Result<(), Box<dyn std::error::Error>> {
-    let area = BitMapBackend::new(OUT_FILE_PATH, (1024, 768)).into_drawing_area();
+    let options = get_options();
+    let output_file_path = options.outputFilePath.as_str();
+    let area = BitMapBackend::new(output_file_path, (1024, 768)).into_drawing_area();
     area.fill(&WHITE)?;
-    let area = area.titled(get_title().as_str(), ("sans-serif", 60))?;
+    let area = area.titled(options.title.as_str(), ("sans-serif", 60))?;
     area.present().expect(
-        format!("I failed to draw your plot to {} !", OUT_FILE_PATH).as_str(),
+        format!("I failed to draw your plot to {} !", output_file_path).as_str(),
     );
-    println!("I drew your plot to {}", OUT_FILE_PATH);
+    println!("I drew your plot to {}", output_file_path);
     Ok(())
 }
 
-fn get_title() -> String {
-    let t;
+fn get_options() -> Options {
+    let o;
     unsafe {
-        t= roc_title();
+        o = roc_options();
     }
-    t.as_str().into()
+    o
 }

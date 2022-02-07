@@ -1,9 +1,9 @@
 platform "roc-plotters"
-    requires {} { title : Str }
+    requires {} { options : { outputFilePath : Str, title : Str } }
     exposes []
     packages {}
     imports []
-    provides [ titleForHost ]
+    provides [ optionsForHost ]
 
-titleForHost : Str
-titleForHost = title
+optionsForHost : { outputFilePath : Str, title : Str }
+optionsForHost = options
