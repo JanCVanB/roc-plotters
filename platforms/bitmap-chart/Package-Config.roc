@@ -1,4 +1,4 @@
-platform "roc-plotters"
+platform "roc-plotters/bitmap-chart"
     requires {} {
         options : {
             outputFilePath : Str,

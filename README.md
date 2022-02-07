@@ -1,8 +1,8 @@
-# Plotters-based drawing platform for Roc
+# Roc platforms for drawing plots with Plotters
 
-[Plotters](https://github.com/38/plotters)
-+
 [Roc](https://roc-lang.org/)
++
+[Plotters](https://github.com/38/plotters)
 = <3
 
 ![hello world example image](./examples/hello_world.png)
