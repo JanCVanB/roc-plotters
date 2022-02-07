@@ -1,0 +1,7 @@
+# Roc-generated files
+target
+*.ll
+*.o
+
+# macOS .DS_Store files
+.DS_Store
