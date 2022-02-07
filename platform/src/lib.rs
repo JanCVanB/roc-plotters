@@ -17,11 +17,17 @@ struct Options {
     title: RocStr,
 }
 
+/// # Safety
+///
+/// TODO: Add safety documentation.
 #[no_mangle]
 pub unsafe extern "C" fn roc_alloc(size: usize, _alignment: u32) -> *mut c_void {
-    return libc::malloc(size);
+    libc::malloc(size)
 }
 
+/// # Safety
+///
+/// TODO: Add safety documentation.
 #[no_mangle]
 pub unsafe extern "C" fn roc_realloc(
     c_ptr: *mut c_void,
@@ -29,14 +35,20 @@ pub unsafe extern "C" fn roc_realloc(
     _old_size: usize,
     _alignment: u32,
 ) -> *mut c_void {
-    return libc::realloc(c_ptr, new_size);
+    libc::realloc(c_ptr, new_size)
 }
 
+/// # Safety
+///
+/// TODO: Add safety documentation.
 #[no_mangle]
 pub unsafe extern "C" fn roc_dealloc(c_ptr: *mut c_void, _alignment: u32) {
-    return libc::free(c_ptr);
+    libc::free(c_ptr)
 }
 
+/// # Safety
+///
+/// TODO: Add safety documentation.
 #[no_mangle]
 pub unsafe extern "C" fn roc_panic(c_ptr: *mut c_void, tag_id: u32) {
     match tag_id {
@@ -50,11 +62,17 @@ pub unsafe extern "C" fn roc_panic(c_ptr: *mut c_void, tag_id: u32) {
     }
 }
 
+/// # Safety
+///
+/// TODO: Add safety documentation.
 #[no_mangle]
 pub unsafe extern "C" fn roc_memcpy(dst: *mut c_void, src: *mut c_void, n: usize) -> *mut c_void {
     libc::memcpy(dst, src, n)
 }
 
+/// # Safety
+///
+/// TODO: Add safety documentation.
 #[no_mangle]
 pub unsafe extern "C" fn roc_memset(dst: *mut c_void, c: i32, n: usize) -> *mut c_void {
     libc::memset(dst, c, n)
@@ -63,11 +81,9 @@ pub unsafe extern "C" fn roc_memset(dst: *mut c_void, c: i32, n: usize) -> *mut 
 #[no_mangle]
 pub extern "C" fn rust_main() -> i32 {
     plot().unwrap();
-    let exit_code = 0;
-    exit_code
+    0
 }
 
-const OUT_FILE_PATH: &'static str = "./plot.png";
 fn plot() -> Result<(), Box<dyn std::error::Error>> {
     let options = get_options();
     let area = BitMapBackend::new(options.outputFilePath.as_str(), (1024, 768)).into_drawing_area();
@@ -95,9 +111,10 @@ fn plot() -> Result<(), Box<dyn std::error::Error>> {
     .label("Cosine")
     .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &BLUE));
     cc.configure_series_labels().border_style(&BLACK).draw()?;
-    area.present().expect(
-        format!("I failed to draw your plot to {} !", options.outputFilePath.as_str()).as_str(),
-    );
+    area.present().unwrap_or_else(|_| panic!(
+        "I failed to draw your plot to {} !",
+        options.outputFilePath.as_str(),
+    ));
     println!("I drew your plot to {}", options.outputFilePath.as_str());
     Ok(())
 }
