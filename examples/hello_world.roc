@@ -7,7 +7,10 @@ config =
     {
         outputFilePath: "./examples/hello_world.svg",
         title: "Hello, World!",
-        subtitle: "These strings are coming from Roc :)",
+        subtitle: "This data is coming from Roc:",
         width: 1024,
         height: 768,
+        x: [-1, 0, 1],
+        y1: [1, -1, 1],
+        y2: [-2, 2, -2],
     }
