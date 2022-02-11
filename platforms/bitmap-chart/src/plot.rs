@@ -1,18 +1,18 @@
-use crate::options::Options;
+use crate::config::Config;
 use plotters::prelude::*;
 
-pub fn plot(options: Options) -> Result<(), Box<dyn std::error::Error>> {
+pub fn plot(config: Config) -> Result<(), Box<dyn std::error::Error>> {
     let area = BitMapBackend::new(
-        options.outputFilePath.as_str(),
-        (options.width, options.height)
+        config.outputFilePath.as_str(),
+        (config.width, config.height)
     ).into_drawing_area();
     area.fill(&WHITE)?;
-    let area = area.titled(options.title.as_str(), ("sans-serif", 60))?;
+    let area = area.titled(config.title.as_str(), ("sans-serif", 60))?;
     let x_axis = (-3.4f32..3.4).step(0.1);
     let mut cc = ChartBuilder::on(&area)
         .margin(5)
         .set_all_label_area_size(50)
-        .caption(options.subtitle.as_str(), ("sans-serif", 40))
+        .caption(config.subtitle.as_str(), ("sans-serif", 40))
         .build_cartesian_2d(-3.4f32..3.4, -1.2f32..1.2f32)?;
     cc.configure_mesh()
         .x_labels(20)
@@ -33,8 +33,8 @@ pub fn plot(options: Options) -> Result<(), Box<dyn std::error::Error>> {
     cc.configure_series_labels().border_style(&BLACK).draw()?;
     area.present().unwrap_or_else(|_| panic!(
         "I failed to draw your plot to {} !",
-        options.outputFilePath.as_str(),
+        config.outputFilePath.as_str(),
     ));
-    println!("I drew your plot to {}", options.outputFilePath.as_str());
+    println!("I drew your plot to {}", config.outputFilePath.as_str());
     Ok(())
 }

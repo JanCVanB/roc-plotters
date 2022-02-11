@@ -1,16 +1,16 @@
-use crate::options::roc_options;
+use crate::config::roc_config;
 use crate::plot::plot;
 
+pub mod config;
 pub mod memory;
-pub mod options;
 pub mod plot;
 
 #[no_mangle]
 pub extern "C" fn rust_main() -> i32 {
-    let options;
+    let config;
     unsafe {
-        options = roc_options();
+        config = roc_config();
     }
-    plot(options).unwrap();
+    plot(config).unwrap();
     0
 }
