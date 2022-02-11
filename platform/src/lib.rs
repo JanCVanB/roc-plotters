@@ -8,6 +8,6 @@ pub mod plot;
 #[no_mangle]
 pub extern "C" fn rust_main() -> i32 {
     let config = roc_config();
-    plot(config);
+    plot(&config);
     0
 }
