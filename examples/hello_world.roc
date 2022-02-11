@@ -1,5 +1,5 @@
 app "hello_world"
-    packages { pf: "../platforms/bitmap-chart" }
+    packages { pf: "../platform" }
     imports []
     provides [ config ] to pf
 

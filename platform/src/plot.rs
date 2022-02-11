@@ -1,14 +1,13 @@
 use crate::config::Config;
 use plotters::prelude::*;
 
-pub fn plot(config: Config) -> Result<(), Box<dyn std::error::Error>> {
+pub fn plot(config: Config) {
     let isSvg = config.outputFilePath.as_str().ends_with(".svg");
     if isSvg {
         plot_svg(config);
     } else {
         plot_bitmap(config);
     }
-    Ok(())
 }
 
 fn plot_bitmap(config: Config) -> Result<(), Box<dyn std::error::Error>> {
