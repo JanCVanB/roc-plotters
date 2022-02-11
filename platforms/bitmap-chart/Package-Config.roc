@@ -1,15 +1,9 @@
 platform "roc-plotters/bitmap-chart"
-    requires {} { config : configForHost }
-    exposes []
+    requires {} { config : Config }
+    exposes [ Config ]
     packages {}
-    imports []
+    imports [ Config.{ Config } ]
     provides [ configForHost ]
 
-configForHost : {
-    outputFilePath : Str,
-    title : Str,
-    subtitle : Str,
-    width : U32,
-    height : U32,
-    }
+configForHost : Config
 configForHost = config
