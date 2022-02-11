@@ -5,7 +5,7 @@ app "hello_world"
 
 config =
     {
-        outputFilePath: "./examples/hello_world.png",
+        outputFilePath: "./examples/hello_world.svg",
         title: "Hello, World!",
         subtitle: "These strings are coming from Roc :)",
         width: 1024,
