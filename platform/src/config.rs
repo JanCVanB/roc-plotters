@@ -4,11 +4,10 @@ use roc_std::{ RocList, RocStr };
 #[repr(C)]
 pub struct Config {
     pub outputFilePath: RocStr,
+    pub points1: RocList<RocList<i32>>,
+    pub points2: RocList<RocList<i32>>,
     pub subtitle: RocStr,
     pub title: RocStr,
-    pub x: RocList<i32>,
-    pub y1: RocList<i32>,
-    pub y2: RocList<i32>,
     pub height: u32,
     pub width: u32,
 }
