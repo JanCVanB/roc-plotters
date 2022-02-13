@@ -7,9 +7,16 @@ config =
     {
         outputFilePath: "./examples/hello_world.svg",
         title: "Hello, World!",
-        subtitle: "This data is coming from Roc:",
+        subtitle: "This data is coming from Roc ☺",
         width: 1024,
         height: 768,
-        points1: [P2 -1  1, P2 0 -1, P2 1 1],
-        points2: [P2 -1 -2, P2 0  2, P2 1 -2],
+        lines: [sin, cos, sin2, cos2],
     }
+
+pi = 3.141592653589793
+ok = \r -> Result.withDefault r 0
+domain = List.range -100 101 |> List.map (\i -> pi * (Num.toFloat i) / 100 |> ok)
+cos = domain |> List.map (\x -> P2 x (Num.cos x))
+sin = domain |> List.map (\x -> P2 x (Num.sin x))
+cos2 = domain |> List.map (\x -> P2 x (2 * Num.cos x))
+sin2 = domain |> List.map (\x -> P2 x (2 * Num.sin x))

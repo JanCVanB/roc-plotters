@@ -3,9 +3,8 @@ use roc_std::{RocList, RocStr};
 #[derive(Default, Debug)]
 #[repr(C)]
 pub struct Config {
+    pub lines: RocList<RocList<(f64, f64)>>,
     pub outputFilePath: RocStr,
-    pub points1: RocList<(i32, i32)>,
-    pub points2: RocList<(i32, i32)>,
     pub subtitle: RocStr,
     pub title: RocStr,
     pub height: u32,

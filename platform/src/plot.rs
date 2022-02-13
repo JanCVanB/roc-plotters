@@ -42,14 +42,11 @@ fn plot_with<Backend: DrawingBackend>(
     config: &Config,
 ) -> Result<(), DrawingAreaErrorKind<Backend::ErrorType>> {
     let area = construct_area(backend, config)?;
-    dbg!(config);
-    let xy1: Vec<(i32, i32)> = dbg!(config.points1.iter().map(|x| *x).collect());
-    let xy2: Vec<(i32, i32)> = dbg!(config.points2.iter().map(|x| *x).collect());
     let mut cc = ChartBuilder::on(&area)
         .margin(5)
         .set_all_label_area_size(50)
         .caption(config.subtitle.as_str(), ("sans-serif", 40))
-        .build_cartesian_2d(-3i32..3i32, -3i32..3i32)?;
+        .build_cartesian_2d(-3.2f64..3.2f64, -2.1f64..2.1f64)?;
     cc.configure_mesh()
         .x_labels(20)
         .y_labels(10)
@@ -57,12 +54,14 @@ fn plot_with<Backend: DrawingBackend>(
         .x_label_formatter(&|v| format!("{:.1}", v))
         .y_label_formatter(&|v| format!("{:.1}", v))
         .draw()?;
-    cc.draw_series(LineSeries::new(xy1, &RED))?
-        .label("Line 1")
-        .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &RED));
-    cc.draw_series(LineSeries::new(xy2, &BLUE))?
-        .label("Line 2")
-        .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &BLUE));
+    let colors = vec![&BLUE, &GREEN, &RED, &CYAN];
+    for (i, line) in config.lines.iter().enumerate() {
+        let v: Vec<(f64, f64)> = line.iter().map(|x| *x).collect();
+        cc.draw_series(LineSeries::new(v, colors[i]))?
+            .label(format!("Line {:?}", i + 1))
+            // TODO: Use the same color here (instead of black) after figuring out how to borrow it.
+            .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &BLACK));
+    }
     cc.configure_series_labels().border_style(&BLACK).draw()?;
     area.present().unwrap_or_else(|_| {
         panic!(
