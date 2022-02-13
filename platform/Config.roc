@@ -10,6 +10,6 @@ Config :
         subtitle : Str,
         width : U32,
         height : U32,
-        points1 : List (List I32),
-        points2 : List (List I32),
+        points1 : List ([P2 I32 I32]),
+        points2 : List ([P2 I32 I32]),
     }

@@ -4,8 +4,8 @@ use roc_std::{RocList, RocStr};
 #[repr(C)]
 pub struct Config {
     pub outputFilePath: RocStr,
-    pub points1: RocList<RocList<i32>>,
-    pub points2: RocList<RocList<i32>>,
+    pub points1: RocList<(i32, i32)>,
+    pub points2: RocList<(i32, i32)>,
     pub subtitle: RocStr,
     pub title: RocStr,
     pub height: u32,

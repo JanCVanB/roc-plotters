@@ -43,19 +43,8 @@ fn plot_with<Backend: DrawingBackend>(
 ) -> Result<(), DrawingAreaErrorKind<Backend::ErrorType>> {
     let area = construct_area(backend, config)?;
     dbg!(config);
-    // TODO: Simplify this somehow
-    let xy1: Vec<(i32, i32)> = dbg!(config
-        .points1
-        .into_iter()
-        .map(|p| p.into_iter().collect::<Vec<i32>>())
-        .map(|ps| (ps[0], ps[1]))
-        .collect::<Vec<(i32, i32)>>());
-    let xy2: Vec<(i32, i32)> = dbg!(config
-        .points2
-        .into_iter()
-        .map(|p| p.into_iter().collect::<Vec<i32>>())
-        .map(|ps| (ps[0], ps[1]))
-        .collect::<Vec<(i32, i32)>>());
+    let xy1: Vec<(i32, i32)> = dbg!(config.points1.iter().map(|x| *x).collect());
+    let xy2: Vec<(i32, i32)> = dbg!(config.points2.iter().map(|x| *x).collect());
     let mut cc = ChartBuilder::on(&area)
         .margin(5)
         .set_all_label_area_size(50)

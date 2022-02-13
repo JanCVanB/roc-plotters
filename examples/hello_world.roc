@@ -10,6 +10,6 @@ config =
         subtitle: "This data is coming from Roc:",
         width: 1024,
         height: 768,
-        points1: [[-1, 1], [0, -1], [1, 1]],
-        points2: [[-1, -2], [0, 2], [1, -2]],
+        points1: [P2 -1  1, P2 0 -1, P2 1 1],
+        points2: [P2 -1 -2, P2 0  2, P2 1 -2],
     }
