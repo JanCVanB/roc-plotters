@@ -1,4 +1,4 @@
-use roc_std::{ RocList, RocStr };
+use roc_std::{RocList, RocStr};
 
 #[derive(Default, Debug)]
 #[repr(C)]

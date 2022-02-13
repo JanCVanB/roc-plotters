@@ -1,5 +1,5 @@
 use crate::config::Config;
-use plotters::coord::{Shift};
+use plotters::coord::Shift;
 use plotters::prelude::*;
 
 pub fn plot(config: &Config) {
@@ -16,10 +16,7 @@ pub fn plot(config: &Config) {
 fn construct_area<Backend: DrawingBackend>(
     backend: Backend,
     config: &Config,
-) -> Result<
-    DrawingArea<Backend, Shift>,
-    DrawingAreaErrorKind<Backend::ErrorType>,
-> {
+) -> Result<DrawingArea<Backend, Shift>, DrawingAreaErrorKind<Backend::ErrorType>> {
     let area = backend.into_drawing_area();
     area.fill(&WHITE)?;
     let area = area.titled(config.title.as_str(), ("sans-serif", 60))?;
@@ -47,8 +44,18 @@ fn plot_with<Backend: DrawingBackend>(
     let area = construct_area(backend, config)?;
     dbg!(config);
     // TODO: Simplify this somehow
-    let xy1: Vec<(i32, i32)> = dbg!(config.points1.into_iter().map(|p| p.into_iter().collect::<Vec<i32>>()).map(|ps| (ps[0], ps[1])).collect::<Vec<(i32, i32)>>());
-    let xy2: Vec<(i32, i32)> = dbg!(config.points2.into_iter().map(|p| p.into_iter().collect::<Vec<i32>>()).map(|ps| (ps[0], ps[1])).collect::<Vec<(i32, i32)>>());
+    let xy1: Vec<(i32, i32)> = dbg!(config
+        .points1
+        .into_iter()
+        .map(|p| p.into_iter().collect::<Vec<i32>>())
+        .map(|ps| (ps[0], ps[1]))
+        .collect::<Vec<(i32, i32)>>());
+    let xy2: Vec<(i32, i32)> = dbg!(config
+        .points2
+        .into_iter()
+        .map(|p| p.into_iter().collect::<Vec<i32>>())
+        .map(|ps| (ps[0], ps[1]))
+        .collect::<Vec<(i32, i32)>>());
     let mut cc = ChartBuilder::on(&area)
         .margin(5)
         .set_all_label_area_size(50)
@@ -68,10 +75,12 @@ fn plot_with<Backend: DrawingBackend>(
         .label("Line 2")
         .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &BLUE));
     cc.configure_series_labels().border_style(&BLACK).draw()?;
-    area.present().unwrap_or_else(|_| panic!(
-        "I failed to draw your plot to {} !",
-        config.outputFilePath.as_str(),
-    ));
+    area.present().unwrap_or_else(|_| {
+        panic!(
+            "I failed to draw your plot to {} !",
+            config.outputFilePath.as_str(),
+        )
+    });
     println!("I drew your plot to {}", config.outputFilePath.as_str());
     Ok(())
 }
