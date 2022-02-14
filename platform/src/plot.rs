@@ -54,13 +54,12 @@ fn plot_with<Backend: DrawingBackend>(
         .x_label_formatter(&|v| format!("{:.1}", v))
         .y_label_formatter(&|v| format!("{:.1}", v))
         .draw()?;
-    let colors = vec![&BLUE, &GREEN, &RED, &CYAN];
-    for (i, line) in config.lines.iter().enumerate() {
-        let v: Vec<(f64, f64)> = line.iter().map(|point| (point.x, point.y)).collect();
-        cc.draw_series(LineSeries::new(v, colors[i]))?
-            .label(format!("Line {:?}", i + 1))
-            // TODO: Use the same color here (instead of black) after figuring out how to borrow it.
-            .legend(|(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], &BLACK));
+    for line in config.lines.iter() {
+        let v: Vec<(f64, f64)> = line.points.iter().map(|point| (point.x, point.y)).collect();
+        let color = RGBColor(line.color.r, line.color.g, line.color.b);
+        cc.draw_series(LineSeries::new(v, color))?
+            .label(format!("Line {:?}", line.name))
+            .legend(move |(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], color));
     }
     cc.configure_series_labels().border_style(&BLACK).draw()?;
     area.present().unwrap_or_else(|_| {

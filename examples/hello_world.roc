@@ -1,6 +1,6 @@
 app "hello_world"
     packages { pf: "../platform" }
-    imports []
+    imports [ pf.Config.{blue, green, red, cyan} ]
     provides [ config ] to pf
 
 config =
@@ -10,7 +10,12 @@ config =
         subtitle: "This data is coming from Roc ☺",
         width: 1024,
         height: 768,
-        lines: [sin, cos, sin2, cos2],
+        lines: [
+            { name: "sine", color: blue, points: sin },
+            { name: "cosine", color: green, points: cos },
+            { name: "sine2", color: red, points: sin2 },
+            { name: "cosine2", color: cyan, points: cos2 },
+        ],
     }
 
 pi = 3.141592653589793
