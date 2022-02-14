@@ -3,13 +3,13 @@ use plotters::coord::Shift;
 use plotters::prelude::*;
 
 pub fn plot(config: &Config) {
-    let isSvg = config.outputFilePath.as_str().ends_with(".svg");
-    if isSvg {
+    let is_svg = config.output_file_path.as_str().ends_with(".svg");
+    if is_svg {
         let backend = construct_svg_backend(config);
-        plot_with(backend, config);
+        plot_with(backend, config).expect("failed to plot with svg backend");
     } else {
         let backend = construct_bitmap_backend(config);
-        plot_with(backend, config);
+        plot_with(backend, config).expect("failed to plot with bitmap backend");
     }
 }
 
@@ -25,14 +25,14 @@ fn construct_area<Backend: DrawingBackend>(
 
 fn construct_bitmap_backend(config: &Config) -> BitMapBackend {
     BitMapBackend::new(
-        config.outputFilePath.as_str(),
+        config.output_file_path.as_str(),
         (config.width, config.height),
     )
 }
 
 fn construct_svg_backend(config: &Config) -> SVGBackend {
     SVGBackend::new(
-        config.outputFilePath.as_str(),
+        config.output_file_path.as_str(),
         (config.width, config.height),
     )
 }
@@ -56,7 +56,7 @@ fn plot_with<Backend: DrawingBackend>(
         .draw()?;
     let colors = vec![&BLUE, &GREEN, &RED, &CYAN];
     for (i, line) in config.lines.iter().enumerate() {
-        let v: Vec<(f64, f64)> = line.iter().map(|x| *x).collect();
+        let v: Vec<(f64, f64)> = line.iter().map(|point| (point.x, point.y)).collect();
         cc.draw_series(LineSeries::new(v, colors[i]))?
             .label(format!("Line {:?}", i + 1))
             // TODO: Use the same color here (instead of black) after figuring out how to borrow it.
@@ -66,9 +66,9 @@ fn plot_with<Backend: DrawingBackend>(
     area.present().unwrap_or_else(|_| {
         panic!(
             "I failed to draw your plot to {} !",
-            config.outputFilePath.as_str(),
+            config.output_file_path.as_str(),
         )
     });
-    println!("I drew your plot to {}", config.outputFilePath.as_str());
+    println!("I drew your plot to {}", config.output_file_path.as_str());
     Ok(())
 }
