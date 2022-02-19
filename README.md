@@ -5,7 +5,7 @@
 [Plotters](https://github.com/38/plotters)
 = <3
 
-![hello world example image](./examples/hello_world.svg)
+![example image](./examples/math.svg)
 
 ## How to example
 

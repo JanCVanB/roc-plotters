@@ -5,22 +5,28 @@ app "hello_world"
 
 config =
     {
-        outputFilePath: "./examples/hello_world.svg",
+        outputFilePath: "./examples/hello_world.png",
         title: "Hello, World!",
         subtitle: "",
-        width: 1024,
-        height: 768,
+        width: 800,
+        height: 600,
         lines: [
-            { name: "cosine", color: Config.green, points: cos },
-            { name: "cosine x 2", color: Config.cyan, points: cosX2 },
-            { name: "sine", color: Config.blue, points: sin },
-            { name: "sine x 2", color: Config.red, points: sinX2 },
+            { name: "up", color: Config.green, points: [P2 -1 -1, P2 1 1] },
+            { name: "down", color: Config.red, points: [P2 -1 1, P2 1 -1] },
         ],
         bounds: {
-            xMin: -3.2,
-            xMax: 3.2,
-            yMin: -2.1,
-            yMax: 2.1,
+            xMin: -1.1,
+            xMax: 1.1,
+            yMin: -1.1,
+            yMax: 1.1,
+        },
+        labels: {
+            xCount: 3,
+            yCount: 3,
+        },
+        layout: {
+            chartMargin: 5,
+            labelArea: 50,
         },
         fonts: {
             titleFamily: "sans-serif",
@@ -28,20 +34,4 @@ config =
             subtitleFamily: "sans-serif",
             subtitleSize: 40,
         },
-        labels: {
-            xCount: 20,
-            yCount: 10,
-        },
-        layout: {
-            chartMargin: 5,
-            labelArea: 50,
-        },
     }
-
-pi = 3.141592653589793
-ok = \r -> Result.withDefault r 0
-domain = List.range -100 101 |> List.map (\i -> pi * (Num.toFloat i) / 100 |> ok)
-cos = domain |> List.map (\x -> P2 x (Num.cos x))
-sin = domain |> List.map (\x -> P2 x (Num.sin x))
-cosX2 = domain |> List.map (\x -> P2 x (2 * Num.cos x))
-sinX2 = domain |> List.map (\x -> P2 x (2 * Num.sin x))
