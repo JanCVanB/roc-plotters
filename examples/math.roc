@@ -5,16 +5,18 @@ app "math"
 
 config =
     {
-        outputFilePath: "./examples/math.svg",
+        outputFilePath: "./examples/math.png",
         title: "Math",
         subtitle: "This is what math looks like.",
         width: 800,
         height: 600,
         lines: [
-            { name: "cosine", color: Config.green, points: cos },
-            { name: "cosine x 2", color: Config.cyan, points: cosX2 },
-            { name: "sine", color: Config.blue, points: sin },
-            { name: "- sine", color: Config.red, points: sinNeg },
+            { name: "cosine", color: Config.blue, points: cos },
+            { name: "cosine x 2", color: Config.red, points: cosX2 },
+            { name: "cosine x 3", color: Config.green, points: cosX3 },
+            { name: "sine", color: Config.cyan, points: sin },
+            { name: "sine x 2", color: Config.blue, points: sinX2 },
+            { name: "sine x 3", color: Config.green, points: sinX3 },
         ],
         bounds: {
             xMin: -3.2,
@@ -44,4 +46,6 @@ domain = List.range -100 101 |> List.map (\i -> pi * (Num.toFloat i) / 100 |> ok
 cos = domain |> List.map (\x -> P2 x (Num.cos x))
 sin = domain |> List.map (\x -> P2 x (Num.sin x))
 cosX2 = domain |> List.map (\x -> P2 x (2 * Num.cos x))
-sinNeg = domain |> List.map (\x -> P2 x (0 - Num.sin x))
+sinX2 = domain |> List.map (\x -> P2 x (2 * Num.sin x))
+cosX3 = domain |> List.map (\x -> P2 x (3 * Num.cos x))
+sinX3 = domain |> List.map (\x -> P2 x (3 * Num.sin x))
