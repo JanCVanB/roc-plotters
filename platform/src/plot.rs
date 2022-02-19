@@ -58,7 +58,7 @@ fn plot_with<Backend: DrawingBackend>(
         let v: Vec<(f64, f64)> = line.points.iter().map(|point| (point.x, point.y)).collect();
         let color = RGBColor(line.color.r, line.color.g, line.color.b);
         cc.draw_series(LineSeries::new(v, color))?
-            .label(format!("Line {:?}", line.name))
+            .label(line.name.as_str())
             .legend(move |(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], color));
     }
     cc.configure_series_labels().border_style(&BLACK).draw()?;

@@ -11,10 +11,10 @@ config =
         width: 1024,
         height: 768,
         lines: [
-            { name: "sine", color: blue, points: sin },
             { name: "cosine", color: green, points: cos },
-            { name: "sine2", color: red, points: sin2 },
-            { name: "cosine2", color: cyan, points: cos2 },
+            { name: "cosine x 2", color: cyan, points: cosX2 },
+            { name: "sine", color: blue, points: sin },
+            { name: "sine x 2", color: red, points: sinX2 },
         ],
     }
 
@@ -23,5 +23,5 @@ ok = \r -> Result.withDefault r 0
 domain = List.range -100 101 |> List.map (\i -> pi * (Num.toFloat i) / 100 |> ok)
 cos = domain |> List.map (\x -> P2 x (Num.cos x))
 sin = domain |> List.map (\x -> P2 x (Num.sin x))
-cos2 = domain |> List.map (\x -> P2 x (2 * Num.cos x))
-sin2 = domain |> List.map (\x -> P2 x (2 * Num.sin x))
+cosX2 = domain |> List.map (\x -> P2 x (2 * Num.cos x))
+sinX2 = domain |> List.map (\x -> P2 x (2 * Num.sin x))
