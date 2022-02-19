@@ -9,10 +9,42 @@ pub struct P2 {
 
 #[derive(Default, Debug, Copy, Clone)]
 #[repr(C)]
+pub struct Bounds {
+    pub xMax: f64,
+    pub xMin: f64,
+    pub yMax: f64,
+    pub yMin: f64,
+}
+
+#[derive(Default, Debug, Copy, Clone)]
+#[repr(C)]
 pub struct Color {
     pub b: u8,
     pub g: u8,
     pub r: u8,
+}
+
+#[derive(Default, Debug)]
+#[repr(C)]
+pub struct Fonts {
+    pub subtitleFamily: RocStr,
+    pub titleFamily: RocStr,
+    pub subtitleSize: u32,
+    pub titleSize: u32,
+}
+
+#[derive(Default, Debug)]
+#[repr(C)]
+pub struct Labels {
+    pub xCount: usize,
+    pub yCount: usize,
+}
+
+#[derive(Default, Debug)]
+#[repr(C)]
+pub struct Layout {
+    pub chartMargin: u32,
+    pub labelArea: u32,
 }
 
 #[derive(Default, Debug)]
@@ -26,11 +58,15 @@ pub struct Line {
 #[derive(Default, Debug)]
 #[repr(C)]
 pub struct Config {
+    pub bounds: Bounds,
+    pub fonts: Fonts,
+    pub labels: Labels,
     pub lines: RocList<Line>,
     pub output_file_path: RocStr,
     pub subtitle: RocStr,
     pub title: RocStr,
     pub height: u32,
+    pub layout: Layout,
     pub width: u32,
 }
 

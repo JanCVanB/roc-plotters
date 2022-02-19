@@ -19,8 +19,28 @@ fn construct_area<Backend: DrawingBackend>(
 ) -> Result<DrawingArea<Backend, Shift>, DrawingAreaErrorKind<Backend::ErrorType>> {
     let area = backend.into_drawing_area();
     area.fill(&WHITE)?;
-    let area = area.titled(config.title.as_str(), ("sans-serif", 60))?;
+    let area = area.titled(
+        config.title.as_str(),
+        (config.fonts.titleFamily.as_str(), config.fonts.titleSize),
+    )?;
     Ok(area)
+}
+
+fn construct_builder<'a, Backend: DrawingBackend>(
+    area: &'a DrawingArea<Backend, Shift>,
+    config: &'a Config,
+) -> ChartBuilder<'a, 'a, Backend> {
+    let subtitle = config.subtitle.as_str();
+    let mut builder = ChartBuilder::on(area);
+    builder.margin(config.layout.chartMargin)
+        .set_all_label_area_size(config.layout.labelArea);
+    if subtitle.len() > 0 {
+        builder.caption(
+            config.subtitle.as_str(),
+            (config.fonts.subtitleFamily.as_str(), config.fonts.subtitleSize),
+        );
+    }
+    return builder;
 }
 
 fn construct_bitmap_backend(config: &Config) -> BitMapBackend {
@@ -42,26 +62,26 @@ fn plot_with<Backend: DrawingBackend>(
     config: &Config,
 ) -> Result<(), DrawingAreaErrorKind<Backend::ErrorType>> {
     let area = construct_area(backend, config)?;
-    let mut cc = ChartBuilder::on(&area)
-        .margin(5)
-        .set_all_label_area_size(50)
-        .caption(config.subtitle.as_str(), ("sans-serif", 40))
-        .build_cartesian_2d(-3.2f64..3.2f64, -2.1f64..2.1f64)?;
-    cc.configure_mesh()
-        .x_labels(20)
-        .y_labels(10)
+    let mut builder = construct_builder(&area, config);
+    let mut context = builder.build_cartesian_2d(
+        config.bounds.xMin..config.bounds.xMax,
+        config.bounds.yMin..config.bounds.yMax,
+    )?;
+    context.configure_mesh()
+        .x_labels(config.labels.xCount)
+        .y_labels(config.labels.yCount)
         .disable_mesh()
-        .x_label_formatter(&|v| format!("{:.1}", v))
-        .y_label_formatter(&|v| format!("{:.1}", v))
+        .x_label_formatter(&|v| format!("{:?}", v)) // TODO: Format labels in Roc.
+        .y_label_formatter(&|v| format!("{:?}", v)) // TODO: Format labels in Roc.
         .draw()?;
     for line in config.lines.iter() {
         let v: Vec<(f64, f64)> = line.points.iter().map(|point| (point.x, point.y)).collect();
         let color = RGBColor(line.color.r, line.color.g, line.color.b);
-        cc.draw_series(LineSeries::new(v, color))?
+        context.draw_series(LineSeries::new(v, color))?
             .label(line.name.as_str())
             .legend(move |(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], color));
     }
-    cc.configure_series_labels().border_style(&BLACK).draw()?;
+    context.configure_series_labels().border_style(&BLACK).draw()?;
     area.present().unwrap_or_else(|_| {
         panic!(
             "I failed to draw your plot to {} !",

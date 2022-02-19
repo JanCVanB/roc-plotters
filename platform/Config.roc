@@ -2,6 +2,14 @@ interface Config
     exposes [ Config, black, white, red, green, blue, cyan, magenta, yellow ]
     imports []
 
+Bounds :
+    {
+        xMin: F64,
+        xMax: F64,
+        yMin: F64,
+        yMax: F64,
+    }
+
 # TODO: probably move some of this into a different module.
 Color :
     {
@@ -19,6 +27,26 @@ cyan = { r: 0, g: 255, b: 255 }
 magenta = { r: 255, g: 0, b: 255 }
 yellow = { r: 255, g: 255, b: 0 }
 
+Fonts :
+    {
+        titleFamily: Str,
+        titleSize: U32,
+        subtitleFamily: Str,
+        subtitleSize: U32,
+    }
+
+Labels :
+    {
+        xCount: Nat,
+        yCount: Nat,
+    }
+
+Layout :
+    {
+        chartMargin: U32,
+        labelArea: U32,
+    }
+
 Line :
     {
         name: Str,
@@ -35,4 +63,8 @@ Config :
         width : U32,
         height : U32,
         lines : List Line,
+        bounds : Bounds,
+        fonts : Fonts,
+        labels : Labels,
+        layout : Layout,
     }

@@ -7,7 +7,7 @@ config =
     {
         outputFilePath: "./examples/hello_world.svg",
         title: "Hello, World!",
-        subtitle: "This data is coming from Roc ☺",
+        subtitle: "",
         width: 1024,
         height: 768,
         lines: [
@@ -16,6 +16,26 @@ config =
             { name: "sine", color: blue, points: sin },
             { name: "sine x 2", color: red, points: sinX2 },
         ],
+        bounds: {
+            xMin: -3.2,
+            xMax: 3.2,
+            yMin: -2.1,
+            yMax: 2.1,
+        },
+        fonts: {
+            titleFamily: "sans-serif",
+            titleSize: 60,
+            subtitleFamily: "sans-serif",
+            subtitleSize: 40,
+        },
+        labels: {
+            xCount: 20,
+            yCount: 10,
+        },
+        layout: {
+            chartMargin: 5,
+            labelArea: 50,
+        },
     }
 
 pi = 3.141592653589793
