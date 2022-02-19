@@ -1,6 +1,6 @@
 app "hello_world"
     packages { pf: "../platform" }
-    imports [ pf.Config.{blue, green, red, cyan} ]
+    imports [ pf.Config ]
     provides [ config ] to pf
 
 config =
@@ -11,10 +11,10 @@ config =
         width: 1024,
         height: 768,
         lines: [
-            { name: "cosine", color: green, points: cos },
-            { name: "cosine x 2", color: cyan, points: cosX2 },
-            { name: "sine", color: blue, points: sin },
-            { name: "sine x 2", color: red, points: sinX2 },
+            { name: "cosine", color: Config.green, points: cos },
+            { name: "cosine x 2", color: Config.cyan, points: cosX2 },
+            { name: "sine", color: Config.blue, points: sin },
+            { name: "sine x 2", color: Config.red, points: sinX2 },
         ],
         bounds: {
             xMin: -3.2,
