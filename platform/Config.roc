@@ -1,5 +1,5 @@
 interface Config
-    exposes [ Config, black, blue, cyan, green, magenta, red, white, yellow ]
+    exposes [ Config, black, blue, cyan, green, magenta, red, white, yellow, colors ]
     imports []
 
 Bounds :
@@ -68,3 +68,5 @@ magenta = { r: 255, g: 0, b: 255 }
 red = { r: 255, g: 0, b: 0 }
 white = { r: 255, g: 255, b: 255 }
 yellow = { r: 255, g: 255, b: 0 }
+
+colors = { black, blue, cyan, green, magenta, red, white, yellow }
