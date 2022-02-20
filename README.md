@@ -1,4 +1,4 @@
-# Roc platform for drawing plots with Plotters
+# Roc platform for drawing with Plotters
 
 [Roc](https://roc-lang.org/)
 +
