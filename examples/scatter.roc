@@ -14,25 +14,25 @@ config =
             {
                 name: "pseudo-random points",
                 color: Color.blue,
-                pointRadius: 1,
+                pointRadius: 0,
                 points: randomPoints,
                 isLineVisible: False,
                 isPointVisible: True,
             },
         ],
         bounds: {
-            xMin: -1,
-            xMax: 101,
-            yMin: -1,
-            yMax: 101,
+            xMin: -10000,
+            xMax: 110000,
+            yMin: -10000,
+            yMax: 110000,
         },
         labels: {
-            xCount: 0,
-            yCount: 0,
+            xCount: 2,
+            yCount: 2,
         },
         layout: {
-            chartMargin: 5,
-            labelArea: 50,
+            chartMargin: 10,
+            labelArea: 100,
         },
         fonts: {
             titleFamily: "sans-serif",
@@ -42,10 +42,10 @@ config =
         },
     }
 
-pointCount = 1000
+pointCount = 100000
 randomSeed = 123
 min = 0
-max = 100
+max = 100000
 randomPoints = List.repeat pointCount 0
     |> List.walk { previous: { seed: ScatterRandom.seed32 randomSeed, value: randomSeed }, values: [] } (\state, _ ->
             now = ScatterRandom.step state.previous.seed (ScatterRandom.u32 min max)
