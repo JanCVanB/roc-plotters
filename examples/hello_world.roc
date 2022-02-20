@@ -11,8 +11,8 @@ config =
         width: 800,
         height: 600,
         lines: [
-            { name: "up", color: Config.green, points: [P2 -1 -1, P2 1 1] },
-            { name: "down", color: Config.red, points: [P2 -1 1, P2 1 -1] },
+            { name: "up", color: Config.colors.green, points: [P2 -1 -1, P2 1 1] },
+            { name: "down", color: Config.colors.red, points: [P2 -1 1, P2 1 -1] },
         ],
         bounds: {
             xMin: -1.1,
