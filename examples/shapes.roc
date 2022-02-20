@@ -14,6 +14,7 @@ config =
             {
                 name: "rectangle",
                 color: Color.red,
+                pointRadius: 6,
                 points: [
                     P2 0.1 0.3,
                     P2 0.2 0.3,
@@ -21,25 +22,33 @@ config =
                     P2 0.1 0.2,
                     P2 0.1 0.3,
                 ],
+                isLineVisible: True,
+                isPointVisible: True,
             },
             {
                 name: "triangle",
                 color: Color.green,
+                pointRadius: 6,
                 points: [
                     P2 0.4 0.6,
                     P2 0.5 1.0,
                     P2 0.6 0.6,
                     P2 0.4 0.6,
                 ],
+                isLineVisible: False,
+                isPointVisible: True,
             },
             {
                 name: "plus",
                 color: Color.blue,
+                pointRadius: 6,
                 points: [
                     P2 0.6 0.3, P2 0.8 0.3,
                     P2 0.7 0.3,
                     P2 0.7 0.4, P2 0.7 0.2,
                 ],
+                isLineVisible: True,
+                isPointVisible: False,
             },
         ],
         bounds: {

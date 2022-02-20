@@ -52,7 +52,10 @@ pub struct Layout {
 pub struct Line {
     pub name: RocStr,
     pub points: RocList<P2>,
+    pub pointRadius: u32,
     pub color: Color,
+    pub isLineVisible: bool,
+    pub isPointVisible: bool,
 }
 
 #[derive(Default, Debug)]
