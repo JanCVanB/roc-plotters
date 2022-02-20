@@ -76,6 +76,6 @@ pub fn roc_config() -> Config {
         fn call(_: &mut Config);
     }
     let mut config = Config::default();
-    unsafe { call(&mut config) };
-    dbg!(config)
+    unsafe { call(&mut config) }
+    config
 }
