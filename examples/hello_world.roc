@@ -11,8 +11,22 @@ config =
         width: 800,
         height: 600,
         lines: [
-            { name: "up", color: Color.green, pointRadius: 3, points: [P2 -1 -1, P2 1 1] },
-            { name: "down", color: Color.red, pointRadius: 3, points: [P2 -1 1, P2 1 -1] },
+            {
+                name: "up",
+                color: Color.green,
+                pointRadius: 3,
+                points: [P2 -1 -1, P2 1 1],
+                isLineVisible: True,
+                isPointVisible: True,
+            },
+            {
+                name: "down",
+                color: Color.red,
+                pointRadius: 3,
+                points: [P2 -1 1, P2 1 -1],
+                isLineVisible: True,
+                isPointVisible: True,
+            },
         ],
         bounds: {
             xMin: -1.1,
