@@ -75,11 +75,15 @@ fn plot_with<Backend: DrawingBackend>(
         .y_label_formatter(&|v| format!("{:?}", v)) // TODO: Format labels in Roc.
         .draw()?;
     for line in config.lines.iter() {
-        let v: Vec<(f64, f64)> = line.points.iter().map(|point| (point.x, point.y)).collect();
+        let v1: Vec<(f64, f64)> = line.points.iter().map(|point| (point.x, point.y)).collect();
+        let v2: Vec<(f64, f64)> = v1.clone(); // TODO: Remove this with proper ownership.
         let color = RGBColor(line.color.r, line.color.g, line.color.b);
-        context.draw_series(LineSeries::new(v, color))?
+        context.draw_series(LineSeries::new(v1, color))?
             .label(line.name.as_str())
             .legend(move |(x, y)| PathElement::new(vec![(x, y), (x + 20, y)], color));
+        context.draw_series(v2.iter().map(
+            |(x, y)| Circle::new((*x, *y), line.pointRadius, color.filled())
+        ))?;
     }
     context.configure_series_labels().border_style(&BLACK).draw()?;
     area.present().unwrap_or_else(|_| {

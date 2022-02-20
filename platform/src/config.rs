@@ -52,6 +52,7 @@ pub struct Layout {
 pub struct Line {
     pub name: RocStr,
     pub points: RocList<P2>,
+    pub pointRadius: u32,
     pub color: Color,
 }
 
@@ -77,5 +78,5 @@ pub fn roc_config() -> Config {
     }
     let mut config = Config::default();
     unsafe { call(&mut config) }
-    config
+    dbg!(config)
 }

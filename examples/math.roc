@@ -11,10 +11,10 @@ config =
         width: 800,
         height: 600,
         lines: [
-            { name: "cosine", color: Color.green, points: cos },
-            { name: "cosine x 2", color: Color.cyan, points: cosX2 },
-            { name: "sine", color: Color.blue, points: sin },
-            { name: "- sine", color: Color.red, points: sinNeg },
+            { name: "cosine", color: Color.green, pointRadius: 0, points: cos },
+            { name: "cosine x 2", color: Color.cyan, pointRadius: 0, points: cosX2 },
+            { name: "sine", color: Color.blue, pointRadius: 0, points: sin },
+            { name: "- sine", color: Color.red, pointRadius: 0, points: sinNeg },
         ],
         bounds: {
             xMin: -3.2,

@@ -49,5 +49,6 @@ Line :
     {
         name: Str,
         color: Color.Color,
+        pointRadius: U32,
         points: List [P2 F64 F64],
     }
