@@ -1,6 +1,6 @@
 app "shapes"
     packages { pf: "../platform" }
-    imports [ pf.Config ]
+    imports [ pf.Color ]
     provides [ config ] to pf
 
 config =
@@ -13,7 +13,7 @@ config =
         lines: [
             {
                 name: "rectangle",
-                color: Config.red,
+                color: Color.red,
                 points: [
                     P2 0.1 0.3,
                     P2 0.2 0.3,
@@ -24,7 +24,7 @@ config =
             },
             {
                 name: "triangle",
-                color: Config.green,
+                color: Color.green,
                 points: [
                     P2 0.4 0.6,
                     P2 0.5 1.0,
@@ -34,7 +34,7 @@ config =
             },
             {
                 name: "plus",
-                color: Config.blue,
+                color: Color.blue,
                 points: [
                     P2 0.6 0.3, P2 0.8 0.3,
                     P2 0.7 0.3,

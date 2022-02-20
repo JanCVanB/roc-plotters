@@ -1,6 +1,6 @@
 interface Config
-    exposes [ Config, black, blue, cyan, green, magenta, red, white, yellow ]
-    imports []
+    exposes [ Config ]
+    imports [ Color ]
 
 Bounds :
     {
@@ -8,14 +8,6 @@ Bounds :
         xMax: F64,
         yMin: F64,
         yMax: F64,
-    }
-
-# TODO: probably move some of this into a different module.
-Color :
-    {
-        r: U8,
-        g: U8,
-        b: U8,
     }
 
 # TODO: Make this a `List` and support it in the platform (with `Vec`?)
@@ -56,15 +48,6 @@ Layout :
 Line :
     {
         name: Str,
-        color: Color,
+        color: Color.Color,
         points: List [P2 F64 F64],
     }
-
-black = { r: 0, g: 0, b: 0 }
-blue = { r: 0, g: 0, b: 255 }
-cyan = { r: 0, g: 255, b: 255 }
-green = { r: 0, g: 255, b: 0 }
-magenta = { r: 255, g: 0, b: 255 }
-red = { r: 255, g: 0, b: 0 }
-white = { r: 255, g: 255, b: 255 }
-yellow = { r: 255, g: 255, b: 0 }
