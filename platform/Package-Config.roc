@@ -1,4 +1,4 @@
-platform "roc-plotters/bitmap-chart"
+platform "roc-plotters"
     requires {} { config : Config }
     exposes [ Color, Config ]
     packages {}
