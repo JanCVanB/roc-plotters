@@ -1,4 +1,4 @@
-#!/bin/bash
-nix-shell \
-	--command 'cd roc && cargo build --release' \
-	./roc/shell.nix
+#!/usr/bin/env bash
+cd roc
+cargo build --release  || true # || true so we can still go back to the previous dir on failure
+cd ..

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Example: ./scripts/for-examples/run.sh hello_world
 # This script is mostly a demonstration - it's simpler to do the following...
 #     `examples/hello_world`
