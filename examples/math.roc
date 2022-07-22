@@ -1,5 +1,5 @@
 app "math"
-    packages { pf: "../platform" }
+    packages { pf: "../platform/main.roc" }
     imports [ pf.Color ]
     provides [ config ] to pf
 
