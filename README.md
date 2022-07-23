@@ -12,10 +12,10 @@
 ## How to example
 
 1. In flake.nix, change `path:/home/anton/gitrepos/roc-plotters/roc` to your roc path (this will be fixed in the near future)
-1. Set up a Roc environment
+1. Set up a nix shell
 
     ```sh
-    nix develop ./roc
+    nix develop
     ```
 
 1. Build Roc

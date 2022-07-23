@@ -50,7 +50,7 @@ Line :
         name: Str,
         color: Color.Color,
         pointRadius: U32,
-        points: List [P2 F64 F64],
+        points: List [Pair F64 F64],
         isLineVisible: Bool,
         isPointVisible: Bool,
     }
