@@ -1,5 +1,5 @@
 app "math"
-    packages { pf: "../platform" }
+    packages { pf: "../platform/main.roc" }
     imports [ pf.Color ]
     provides [ config ] to pf
 
@@ -67,9 +67,8 @@ config =
     }
 
 pi = 3.141592653589793
-ok = \r -> Result.withDefault r 0
-domain = List.range -100 101 |> List.map (\i -> pi * (Num.toFloat i) / 100 |> ok)
-cos = domain |> List.map (\x -> P2 x (Num.cos x))
-sin = domain |> List.map (\x -> P2 x (Num.sin x))
-cosX2 = domain |> List.map (\x -> P2 x (2 * Num.cos x))
-sinNeg = domain |> List.map (\x -> P2 x (0 - Num.sin x))
+domain = List.range -100 101 |> List.map (\i -> pi * (Num.toF64 i) / 100)
+cos = domain |> List.map (\x -> Pair x (Num.cos x))
+sin = domain |> List.map (\x -> Pair x (Num.sin x))
+cosX2 = domain |> List.map (\x -> Pair x (2 * Num.cos x))
+sinNeg = domain |> List.map (\x -> Pair x (0 - Num.sin x))

@@ -1,5 +1,5 @@
 app "scatter"
-    packages { pf: "../platform" }
+    packages { pf: "../platform/main.roc" }
     imports [ pf.Color, ScatterRandom ]
     provides [ config ] to pf
 
@@ -43,16 +43,20 @@ config =
     }
 
 pointCount = 100000
+
 randomSeed = 123
+
 min = 0
 max = 100000
-initial = { seed: ScatterRandom.seed32 randomSeed, value: randomSeed }
-randomPoints = List.repeat pointCount 0
+
+initial = { state: ScatterRandom.seed32 randomSeed, value: randomSeed }
+
+randomPoints = List.repeat 0 pointCount
     |> List.walk { previous: initial, values: [] } (\state, _ ->
-            now = ScatterRandom.next state.previous (ScatterRandom.u32 min max)
-            x = Num.toFloat state.previous.value
-            y = Num.toFloat now.value
-            values = List.append state.values (P2 x y)
-            { previous: now, values }
-        )
+        now = ScatterRandom.next state.previous (ScatterRandom.u32 min max)
+        x = Num.toF64 state.previous.value
+        y = Num.toF64 now.value
+        values = List.append state.values (Pair x y)
+        { previous: now, values }
+    )
     |> \w -> w.values

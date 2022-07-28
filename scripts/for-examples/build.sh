@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Example: ./scripts/for-examples/build.sh hello_world
 # This script is mostly a demonstration - it's simpler to do the following...
 #     `./roc/target/release/roc build ./examples/hello_world.roc`
