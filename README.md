@@ -9,27 +9,16 @@
 ![example drawing of line-based shapes like rectangle, triangle, and plus sign](./examples/shapes.jpg)
 ![example scatterplot of pseudo-random points](./examples/scatter.png)
 
-## How to example
+## How to run the example apps
 
-1. In flake.nix, change `path:/home/anton/gitrepos/roc-plotters/roc` to your roc path (this will be fixed in the near future).
-1. Delete flake.lock:
-    ```sh
-    rm flake.lock
-    ```
-1. Set up a nix shell
+1. [Install Roc](https://github.com/roc-lang/roc/tree/main/getting_started)
+
+2. Run/dev/build the apps in [`examples/`](./examples/)
 
     ```sh
-    nix develop
-    ```
+    roc run examples/math.roc
 
-1. Build Roc
+    roc dev examples/shapes.roc
 
-    ```sh
-    ./scripts/for-roc/build.sh
-    ```
-
-1. Build & run an example
-
-    ```sh
-    ./scripts/for-examples/build_and_run.sh hello_world
+    roc build examples/scatter.roc
     ```
