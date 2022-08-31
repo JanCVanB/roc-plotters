@@ -2,7 +2,7 @@
   description = "roc-plotters";
 
   inputs = {
-    roc.url = "path:/home/anton/gitrepos/roc-plotters/roc";
+    roc.url = "path:/home/jan/_code/_roc/roc-plotters/roc";
     # to easily make configs for multiple architectures
     flake-utils.url = "github:numtide/flake-utils";
   };
