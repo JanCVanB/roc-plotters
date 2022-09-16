@@ -9,22 +9,18 @@
 ![example drawing of line-based shapes like rectangle, triangle, and plus sign](./examples/shapes.jpg)
 ![example scatterplot of pseudo-random points](./examples/scatter.png)
 
-## How to example
+## How to use
 
-1. Set up a Roc environment
+1. [Install Roc & Rust](https://github.com/roc-lang/roc/tree/main/getting_started)
 
-    ```sh
-    nix-shell ./roc/shell.nix
-    ```
-
-1. Build Roc
+1. Run one of [the examples](https://github.com/JanCVanB/roc-plotters/tree/main/examples)
 
     ```sh
-    ./scripts/for-roc/build.sh
+    roc ./examples/hello_world.roc
     ```
 
-1. Build & run an example
+1. Open [the output image](https://github.com/JanCVanB/roc-plotters/blob/main/examples/hello_world.png)
 
-    ```sh
-    ./scripts/for-examples/build_and_run.sh hello_world
-    ```
+1. Write your own Roc script(s) and enjoy!
+
+1. [Open an issue](https://github.com/JanCVanB/roc-plotters/issues/new) if you encounter any problems or have any ideas for improvement, and [create a PR](https://github.com/JanCVanB/roc-plotters/compare) if you want to help improve this for others!
