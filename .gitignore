@@ -1,7 +1,13 @@
 # Roc-generated files
-target
+*.dSYM
 *.ll
 *.o
+dynhost
+libhost.a
+libapp.so
+metadata
+preprocessedhost
+target
 
-# macOS .DS_Store files
+# macOS files
 .DS_Store

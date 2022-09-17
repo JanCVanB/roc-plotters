@@ -1,5 +1,5 @@
 app "scatter"
-    packages { pf: "../platform" }
+    packages { pf: "../platform/main.roc" }
     imports [ pf.Color, ScatterRandom ]
     provides [ config ] to pf
 
