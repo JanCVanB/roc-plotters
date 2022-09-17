@@ -50,8 +50,8 @@ initial = { seed: ScatterRandom.seed32 randomSeed, value: randomSeed }
 randomPoints = List.repeat pointCount 0
     |> List.walk { previous: initial, values: [] } (\state, _ ->
             now = ScatterRandom.next state.previous (ScatterRandom.u32 min max)
-            x = Num.toFloat state.previous.value
-            y = Num.toFloat now.value
+            x = Num.toF64 state.previous.value
+            y = Num.toF64 now.value
             values = List.append state.values (P2 x y)
             { previous: now, values }
         )
